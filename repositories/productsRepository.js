@@ -1,5 +1,4 @@
 const dbService = require('../services/dbService');
-const objectId = require('mongodb').ObjectId;
 
 let productCollection = null;
 dbService.connectToDB()
@@ -7,7 +6,13 @@ dbService.connectToDB()
 
 const getProducts = async () => {
     console.log('Repository: getProducts')
-    return await productCollection.find({}).toArray();
+    return await productCollection.find( {} ).toArray();
+}
+
+const getProduct = async (id) => {
+    console.log('Repository: getProduct')
+    return await productCollection.find( {"id" : parseInt(id)} ).toArray();
 }
 
 module.exports.getProducts = getProducts;
+module.exports.getProduct = getProduct;
