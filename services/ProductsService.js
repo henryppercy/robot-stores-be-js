@@ -1,13 +1,18 @@
-const productsRepository = require('../repositories/productsRepository');
+const dbService = require('../services/dbService');
+const productsValidator = require('../services/validators/ProductsValidator')
+const {validateProductId} = require("./validators/ProductsValidator");
+
+let productCollection = null;
+
+dbService.connectToDB()
+    .then((db) => productCollection = db.collection('products'));
 
 const getProducts = async () => {
-    console.log('Service: getProducts');
-    return await productsRepository.getProducts();
+    return await productCollection.find( {} ).toArray();
 }
 
 const getProduct = async (id) => {
-    console.log('Service: getProduct ' + id);
-    return await productsRepository.getProduct(id);
+    return await productCollection.find( { 'id' : parseInt(id) } ).toArray();
 }
 
 module.exports.getProducts = getProducts;
