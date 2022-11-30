@@ -1,4 +1,4 @@
-const productsController = require('../controllers/productsController');
+const productsController = require('../controllers/ProductsController');
 
 const routes = (app) => {
     app.get('/products', productsController.getProducts)
