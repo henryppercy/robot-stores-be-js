@@ -2,7 +2,7 @@ const productsService = require('../services/ProductsService');
 
 const getProducts = (req, res) => {
     productsService.getProducts()
-        .then((products) => res.json(products));
+        .then((product) => res.json(product));
 }
 
 const getProduct = (req, res) => {
